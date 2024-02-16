@@ -1,7 +1,11 @@
 import React from 'react';
-import { NEXT_QUESTION, State } from '../reducer/reducer';
+import { NEXT_QUESTION, QuizState } from '../reducer/reducer';
+import { useQuizContext } from '../context/quiz.context';
 
-export default function Actions({ dispatch, hasAnswered }: State) {
+export default function Actions() {
+  const state: QuizState = useQuizContext();
+
+  const { hasAnswered, dispatch } = state;
   function handleNextQuestion() {
     dispatch({ type: NEXT_QUESTION });
   }

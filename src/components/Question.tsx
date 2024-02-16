@@ -1,22 +1,22 @@
-import React from 'react';
-import { CHECK_ANSWER, State } from '../reducer/reducer';
+import { CHECK_ANSWER } from '../reducer/reducer';
+import { useQuizContext } from '../context/quiz.context';
 
-export default function Question({
-  question,
-  dispatch,
-  hasAnswered,
-}: QuestionProp) {
+export default function Question() {
+  const state: any = useQuizContext();
+  const question: any = state.questions[state.index];
+  console.log(question);
+
+  const hasAnswered = state.hasAnswered;
   console.log(question);
   function handleChosenAnswer(index: number) {
-    dispatch({
+    state.dispatch({
       type: CHECK_ANSWER,
       payload: {
-        correctAnswerIndex: question.correctOption,
+        correctAnswerIndex: question.correctoption,
         points: question.points,
         chosenIndex: index,
       },
     });
-    console.log(hasAnswered);
   }
   return (
     <article>
@@ -27,7 +27,7 @@ export default function Question({
             onClick={() => handleChosenAnswer(index)}
             className={`btn btn-option ${
               hasAnswered
-                ? index == question.correctOption
+                ? index == question.correctoption
                   ? 'correct'
                   : 'wrong'
                 : ''
@@ -41,8 +41,4 @@ export default function Question({
       </div>
     </article>
   );
-}
-
-export interface QuestionProp extends State {
-  question: any;
 }

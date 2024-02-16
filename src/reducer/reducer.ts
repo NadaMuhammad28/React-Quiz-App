@@ -1,6 +1,6 @@
 import { Reducer } from 'react';
 import { Action } from '../models/Reducer.type';
-export const reducer: Reducer<State, Action> = (state, action) => {
+export const reducer: Reducer<QuizState, Action> = (state, action) => {
   switch (action.type) {
     case START: {
       return { ...state, start: true };
@@ -69,7 +69,7 @@ export const initialState = {
   hasAnswered: false,
 };
 
-export interface State {
+export interface QuizState {
   questions: any[];
   start: boolean;
   index: number;
@@ -79,5 +79,6 @@ export interface State {
   totalPoints: number;
   totalQuestions: number;
   hasAnswered: boolean;
-  dispatch?: Function;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  dispatch: Function;
 }
