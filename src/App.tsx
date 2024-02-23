@@ -1,20 +1,25 @@
 import './App.css';
 import Header from './components/Header';
 
-import { QuizState, START } from './reducer/reducer';
+import { QuizState } from './reducer/reducer';
 import Quiz from './components/Quiz';
 import { useQuizContext } from './context/quiz.context';
+import { QuizStatus } from './models/Quiz.state';
+import StartScreen from './components/StartScreen';
+import FinishScreen from './components/FinishScreen';
 
 function App() {
   const state: QuizState = useQuizContext();
-  const { dispatch, start } = state;
+  const { status } = state;
   return (
     <main>
       <Header />
-      {start ? (
+      {status === QuizStatus.START ? (
+        <StartScreen />
+      ) : status === QuizStatus.PENDING ? (
         <Quiz />
       ) : (
-        <button onClick={() => dispatch({ type: START })}>Start</button>
+        <FinishScreen />
       )}
     </main>
   );

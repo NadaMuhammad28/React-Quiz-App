@@ -1,11 +1,11 @@
-import { CHECK_ANSWER } from '../reducer/reducer';
+import { CHECK_ANSWER } from '../reducer';
 import { useQuizContext } from '../context/quiz.context';
+import { useEffect } from 'react';
 
 export default function Question() {
   const state: any = useQuizContext();
   const question: any = state.questions[state.index];
   console.log(question);
-
   const hasAnswered = state.hasAnswered;
   console.log(question);
   function handleChosenAnswer(index: number) {

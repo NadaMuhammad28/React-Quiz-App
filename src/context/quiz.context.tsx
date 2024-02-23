@@ -1,10 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import {
-  FETCH_QUESTIONS,
-  QuizState,
-  initialState,
-  reducer,
-} from '../reducer/reducer';
+import { FETCH_QUESTIONS, QuizState, initialState, reducer } from '../reducer';
 
 const QuizContext = createContext<QuizState | undefined>(undefined);
 
